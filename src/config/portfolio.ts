@@ -8,7 +8,7 @@
 export interface ProjectItem {
   id: string;
   title: string;
-  category: "all" | "hauteur" | "residentiel" | "verrieres" | "tertiaire" | "eau-pure";
+  category: "all" | "hauteur" | "residentiel" | "verrieres" | "tertiaire" | "eau-pure" | "bureaux" | "commerces" | "soins";
   categoryLabel: string;
   imageSrc: string;
   imageWebp: string;
@@ -18,6 +18,7 @@ export interface ProjectItem {
   surfaceType: string;
   techniquesUsed: string[];
   aspectRatio: string;
+  isSpaceTypology?: boolean;
 }
 
 export const portfolioCategories = [
@@ -25,7 +26,9 @@ export const portfolioCategories = [
   { id: "hauteur", label: "Grande Hauteur & Nacelle" },
   { id: "residentiel", label: "Résidences & Baies Vitrées" },
   { id: "verrieres", label: "Verrières & Toitures de verre" },
-  { id: "tertiaire", label: "Bureaux, Magasins & Santé" },
+  { id: "bureaux", label: "Bureaux & Espaces d'entreprises" },
+  { id: "commerces", label: "Commerces & Arrière-boutiques" },
+  { id: "soins", label: "Cabinets & Espaces de soins" },
   { id: "eau-pure", label: "Système Eau Pure & Perche" },
 ] as const;
 
@@ -238,5 +241,140 @@ export const portfolioProjects: ProjectItem[] = [
       "Produits respectueux des normes d'hygiène des cabinets libéraux"
     ],
     aspectRatio: "3/4",
+  },
+  {
+    id: "chantier-bureaux-espace-pause",
+    title: "Espace pause & détente d'entreprise",
+    category: "bureaux",
+    categoryLabel: "Bureaux & Espaces d'entreprises",
+    imageSrc: "/assets/images/chantier-bureaux-espace-pause.jpg",
+    imageWebp: "/assets/images/chantier-bureaux-espace-pause.webp",
+    originalFileName: "WhatsApp Image 2026-10-21 at 03.55.39 (3).jpeg",
+    alt: "Espace pause d'entreprise avec kitchenette, table en bois et chaises relevées pour l'entretien des sols",
+    caption: "Espace pause et réfectoire d'entreprise préparé pour l'intervention : mobilier surélevé pour permettre un dépoussiérage et un lavage soigné de l'ensemble du sol carrelé.",
+    surfaceType: "Espace pause & réfectoire professionnel",
+    techniquesUsed: [
+      "Mobilier surélevé pour un accès total à l'ensemble du sol",
+      "Nettoyage et essuyage des plans de travail et crédences",
+      "Aspiration et lavage soigné du sol carrelé",
+      "Tri et évacuation des corbeilles selon protocole"
+    ],
+    aspectRatio: "3/4",
+    isSpaceTypology: true,
+  },
+  {
+    id: "chantier-cabinet-kinesitherapie-aspres",
+    title: "Salle de soins en cabinet de kinésithérapie",
+    category: "soins",
+    categoryLabel: "Cabinets & Espaces de soins",
+    imageSrc: "/assets/images/chantier-cabinet-kinesitherapie-aspres.jpg",
+    imageWebp: "/assets/images/chantier-cabinet-kinesitherapie-aspres.webp",
+    originalFileName: "WhatsApp Image 2026-10-21 at 03.55.39 (4).jpeg",
+    alt: "Salle de consultation de kinésithérapie avec table de manipulation, mobilier relevé et cadre mural Les Aspres",
+    caption: "Salle de soins en cabinet de kinésithérapie : préparation du sol par surélévation des assises, dépoussiérage méticuleux et lavage du carrelage grand format.",
+    surfaceType: "Cabinet de kinésithérapie & salle de soins",
+    techniquesUsed: [
+      "Mobilier et tabourets surélevés pour lavage continu sans obstacle",
+      "Entretien du sol carrelé grand format avec solution neutre",
+      "Nettoyage minutieux des vitrages et films dépolis",
+      "Respect rigoureux de la confidentialité et du matériel de soins"
+    ],
+    aspectRatio: "3/4",
+    isSpaceTypology: true,
+  },
+  {
+    id: "chantier-plateau-technique-reeducation",
+    title: "Plateau technique & équipement de rééducation",
+    category: "soins",
+    categoryLabel: "Cabinets & Espaces de soins",
+    imageSrc: "/assets/images/chantier-plateau-technique-reeducation.jpg",
+    imageWebp: "/assets/images/chantier-plateau-technique-reeducation.webp",
+    originalFileName: "WhatsApp Image 2026-10-21 at 03.55.40 (4).jpeg",
+    alt: "Plateau technique de rééducation avec rack de poids, haltères et matériel d'entraînement physique",
+    caption: "Plateau technique et salle d'exercices de rééducation : dépoussiérage et entretien régulier des sols techniques autour des équipements sportifs.",
+    surfaceType: "Plateau technique & zone d'exercices rééducatifs",
+    techniquesUsed: [
+      "Dépoussiérage soigné autour des racks de poids et structures de musculation",
+      "Lavage des sols techniques antidérapants",
+      "Précision et respect absolu des équipements de rééducation"
+    ],
+    aspectRatio: "3/4",
+    isSpaceTypology: true,
+  },
+  {
+    id: "chantier-cabinet-soins-table-manipulation",
+    title: "Cabinet de consultation & miroir mural",
+    category: "soins",
+    categoryLabel: "Cabinets & Espaces de soins",
+    imageSrc: "/assets/images/chantier-cabinet-soins-table-manipulation.jpg",
+    imageWebp: "/assets/images/chantier-cabinet-soins-table-manipulation.webp",
+    originalFileName: "WhatsApp Image 2026-10-21 at 03.55.40 (2).jpeg",
+    alt: "Cabinet de consultation avec table de manipulation, grand miroir mural et sol carrelé",
+    caption: "Salle de soins et manipulation : entretien du sol carrelé moderne, dépoussiérage des dessertes et nettoyage sans trace du grand miroir mural de contrôle postural.",
+    surfaceType: "Cabinet médical / paramédical & table de soin",
+    techniquesUsed: [
+      "Nettoyage sans trace du grand miroir mural de rééducation",
+      "Lavage soigné du sol carrelé dégagé de tout obstacle",
+      "Hygiène quotidienne et soin attentif apporté aux surfaces"
+    ],
+    aspectRatio: "3/4",
+    isSpaceTypology: true,
+  },
+  {
+    id: "chantier-arriere-boutique-laboratoire",
+    title: "Arrière-boutique & laboratoire de préparation",
+    category: "commerces",
+    categoryLabel: "Commerces & Arrière-boutiques",
+    imageSrc: "/assets/images/chantier-arriere-boutique-laboratoire.jpg",
+    imageWebp: "/assets/images/chantier-arriere-boutique-laboratoire.webp",
+    originalFileName: "WhatsApp Image 2026-10-21 at 03.55.39 (2).jpeg",
+    alt: "Arrière-boutique et laboratoire de préparation alimentaire avec chariots inox, plan de travail et sol carrelé lavé",
+    caption: "Espace arrière-boutique et laboratoire commercial : dégagement des allées, entretien des plinthes et lavage du sol carrelé professionnel avec évacuation vers siphon.",
+    surfaceType: "Laboratoire de préparation & arrière-boutique",
+    techniquesUsed: [
+      "Entretien des sols carrelés professionnels avec évacuation au sol",
+      "Nettoyage des circulations autour des dessertes inox",
+      "Protocoles adaptés aux exigences de propreté commerciale"
+    ],
+    aspectRatio: "3/4",
+    isSpaceTypology: true,
+  },
+  {
+    id: "chantier-arriere-boutique-decoupe-materiel",
+    title: "Espace de découpe & réserve commerciale",
+    category: "commerces",
+    categoryLabel: "Commerces & Arrière-boutiques",
+    imageSrc: "/assets/images/chantier-arriere-boutique-decoupe-materiel.jpg",
+    imageWebp: "/assets/images/chantier-arriere-boutique-decoupe-materiel.webp",
+    originalFileName: "WhatsApp Image 2026-10-21 at 03.55.39.jpeg",
+    alt: "Espace arrière-boutique avec matériel de découpe inox, rayonnages et seau de nettoyage professionnel",
+    caption: "Zone de service et préparation boucherie-traiteur : entretien régulier du sol et des abords des équipements avec matériel de lavage professionnel.",
+    surfaceType: "Zone de découpe & réserve de magasin",
+    techniquesUsed: [
+      "Dégagement du sol pour lavage et brossage des carreaux",
+      "Utilisation de matériel professionnel de lavage des sols",
+      "Respect des installations et rayonnages de réserve"
+    ],
+    aspectRatio: "3/4",
+    isSpaceTypology: true,
+  },
+  {
+    id: "chantier-commerce-reserve-froide",
+    title: "Chambre froide & réserve commerciale",
+    category: "commerces",
+    categoryLabel: "Commerces & Arrière-boutiques",
+    imageSrc: "/assets/images/chantier-commerce-reserve-froide.jpg",
+    imageWebp: "/assets/images/chantier-commerce-reserve-froide.webp",
+    originalFileName: "WhatsApp Image 2026-10-21 at 03.55.39 (1).jpeg",
+    alt: "Chambre froide et réserve carrelée avec étagères métalliques et sol lavé",
+    caption: "Espace de stockage frigorifique et réserve professionnelle : sol carrelé entretenu avec rayonnages métalliques et plinthes soignées.",
+    surfaceType: "Chambre froide & réserve de stockage",
+    techniquesUsed: [
+      "Lavage du sol carrelé antidérapant résistant au froid",
+      "Nettoyage des plinthes et angles de réserves",
+      "Séchage soigné des zones de circulation"
+    ],
+    aspectRatio: "3/4",
+    isSpaceTypology: true,
   },
 ];

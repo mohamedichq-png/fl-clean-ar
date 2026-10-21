@@ -27,20 +27,23 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   title: {
-    default: "FL Clean AR | Nettoyage de Vitres Professionnel & Particulier (66)",
+    default: "FL Clean AR | Nettoyage Professionnel de Vitres, Bureaux & Locaux (66)",
     template: "%s | FL Clean AR",
   },
   description:
-    "Entreprise de nettoyage professionnel de vitres, verrières, vérandas, vitrines et façades pour particuliers et locaux professionnels dans les Pyrénées-Orientales (Thuir, Perpignan). Devis sur mesure.",
+    "Entreprise de nettoyage professionnel de vitres, verrières, bureaux, commerces et espaces professionnels dans les Pyrénées-Orientales (Thuir, Perpignan). Artisan qualifié et devis personnalisé.",
   keywords: [
+    "nettoyage de bureaux",
+    "nettoyage de locaux professionnels",
     "nettoyage de vitres professionnel",
+    "nettoyage de commerces",
+    "nettoyage de cabinets professionnels",
+    "nettoyage de vitrages et verrières",
     "nettoyage vitres thuir",
     "nettoyage vitres perpignan",
-    "nettoyage verrière pyrénées orientales",
-    "nettoyage vitrines magasins 66",
+    "nettoyage bureaux perpignan 66",
     "nettoyage véranda 66",
     "laveur de vitre 66",
-    "nettoyage façades vitrées",
     "nacelle laveur de vitre 66",
     "FL Clean AR",
     "FL Vitre 66"

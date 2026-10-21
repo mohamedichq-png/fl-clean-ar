@@ -23,7 +23,7 @@ export default function ServiceCard({ service, featured = false }: ServiceCardPr
         />
         <div className="card-badge-overlay">
           <span className="badge badge-gold">
-            {service.targetCustomer}
+            {service.categoryLabel || service.targetCustomer}
           </span>
         </div>
       </div>

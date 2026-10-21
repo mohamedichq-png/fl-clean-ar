@@ -1,0 +1,14 @@
+[
+  {
+    "id": "rev-1792592217876-cncvf",
+    "timestamp": "2026-10-21T14:16:57.876Z",
+    "authorName": "Cabinet Médical Test",
+    "customerType": "Professionnel",
+    "serviceType": "Nettoyage de cabinets & espaces de soins",
+    "rating": 5,
+    "location": "Thuir",
+    "comment": "Très satisfaits de l entretien régulier de nos sols et salles de consultation. Ponctuel et discret.",
+    "contactVerification": "0600000000",
+    "status": "pending_moderation"
+  }
+]

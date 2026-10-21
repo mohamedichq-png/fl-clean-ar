@@ -232,7 +232,7 @@ function QuoteFormInner() {
                 className={`type-btn ${customerType === "Professionnel" ? "type-btn-active" : ""}`}
                 onClick={() => setCustomerType("Professionnel")}
               >
-                Professionnel (Commerce / Bureau / Agence)
+                Professionnel (Bureau / Commerce / Cabinet / Agence)
               </button>
             </div>
           </div>

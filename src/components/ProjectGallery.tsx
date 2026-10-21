@@ -198,6 +198,15 @@ export default function ProjectGallery({ initialLimit, showFilters = true }: Pro
                 <h3 className="lightbox-title">{activeProject.title}</h3>
                 <p className="lightbox-caption">{activeProject.caption}</p>
 
+                {activeProject.isSpaceTypology && (
+                  <div className="lightbox-typology-notice">
+                    <span className="typology-icon-star">✦</span>
+                    <span>
+                      Photographie authentique d&apos;espace professionnel (bureaux, commerces ou cabinet de soins). Présentation des typologies de locaux pris en charge par FL Clean AR.
+                    </span>
+                  </div>
+                )}
+
                 <div className="lightbox-techniques">
                   <h5 className="techniques-title">Techniques & procédés mis en œuvre :</h5>
                   <ul className="techniques-list">

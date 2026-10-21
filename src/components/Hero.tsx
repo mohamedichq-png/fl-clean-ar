@@ -26,18 +26,18 @@ export default function Hero() {
           {/* Eyebrow badge */}
           <div className="hero-badge">
             <Sparkles size={14} className="badge-sparkle" />
-            <span>Artisan Laveur de Vitres • Pyrénées-Orientales (66)</span>
+            <span>Nettoyage Professionnel • Vitres &amp; Locaux • Pyrénées-Orientales (66)</span>
           </div>
 
           {/* Main Headline */}
           <h1 id="hero-heading" className="hero-title">
             Nettoyage professionnel de{" "}
-            <span className="hero-highlight">vitres, verrières &amp; façades</span>
+            <span className="hero-highlight">vitres et de locaux</span>
           </h1>
 
           {/* Supporting Text */}
           <p className="hero-lead">
-            Des solutions de nettoyage adaptées à vos locaux professionnels, vitrages et façades dans les Pyrénées-Orientales (Thuir, Perpignan et communes environnantes). Contactez-nous pour étudier votre besoin et obtenir un devis.
+            Des prestations de nettoyage adaptées aux vitrages, bureaux et espaces professionnels. Contactez FL Clean AR pour discuter de vos besoins et demander un devis.
           </p>
 
           {/* Artisan badge in Hero */}
@@ -53,7 +53,7 @@ export default function Hero() {
             </div>
             <div className="artisan-badge-info">
               <span className="artisan-name">Farid HAMMOUDI</span>
-              <span className="artisan-role">Artisan Laveur de Vitres • Intervention toutes hauteurs</span>
+              <span className="artisan-role">Artisan Qualifié • Vitrages, Bureaux &amp; Espaces Professionnels</span>
             </div>
           </div>
 
@@ -64,8 +64,8 @@ export default function Hero() {
               <ArrowRight size={18} />
             </Link>
 
-            <Link href="/contact" className="btn btn-outline-white btn-lg">
-              <span>Nous contacter</span>
+            <Link href="/services" className="btn btn-outline-white btn-lg">
+              <span>Découvrir nos services</span>
             </Link>
           </div>
 
@@ -98,15 +98,15 @@ export default function Hero() {
           <div className="hero-reassurance-grid">
             <div className="reassurance-item">
               <CheckCircle2 size={18} className="reassurance-icon" />
-              <span>Matériel pro &amp; nacelle certifiée</span>
+              <span>Vitrages toutes hauteurs &amp; nacelle certifiée</span>
             </div>
             <div className="reassurance-item">
               <CheckCircle2 size={18} className="reassurance-icon" />
-              <span>Particuliers &amp; Locaux professionnels (66)</span>
+              <span>Bureaux, commerces &amp; espaces professionnels (66)</span>
             </div>
             <div className="reassurance-item">
               <CheckCircle2 size={18} className="reassurance-icon" />
-              <span>Devis clair, adapté et sans engagement</span>
+              <span>Interventions Thuir, Perpignan &amp; 66</span>
             </div>
           </div>
         </div>

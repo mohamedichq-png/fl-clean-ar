@@ -1,27 +1,27 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, ShieldCheck, Sparkles, CheckCircle2, Phone, MessageSquare, MapPin } from "lucide-react";
+import { ArrowRight, ShieldCheck, Sparkles, CheckCircle2, Phone, MessageSquare, MapPin, Building2, Store, Stethoscope } from "lucide-react";
 import Hero from "@/components/Hero";
 import ServiceCard from "@/components/ServiceCard";
 import ProjectGallery from "@/components/ProjectGallery";
 import ProcessSection from "@/components/ProcessSection";
+import CustomerReviews from "@/components/CustomerReviews";
 import HomeFAQ from "@/components/HomeFAQ";
 import QuoteForm from "@/components/QuoteForm";
-import { servicesData } from "@/config/services";
+import { servicesData, serviceCategories } from "@/config/services";
 import { businessConfig } from "@/config/business";
 
 export const metadata = {
-  title: "FL Clean AR | Nettoyage Professionnel de Vitres, Verrières & Façades (66)",
+  title: "FL Clean AR | Nettoyage Professionnel de Vitres, Bureaux & Locaux (66)",
   description:
-    "Nettoyage professionnel de vitres, verrières, vérandas, vitrines et façades d'immeubles dans les Pyrénées-Orientales (Thuir, Perpignan). Artisan qualifié, matériel adapté et devis personnalisé.",
+    "Nettoyage professionnel de vitres, verrières, bureaux, commerces et espaces professionnels dans les Pyrénées-Orientales (Thuir, Perpignan). Artisan qualifié, matériel adapté et devis personnalisé.",
   alternates: {
     canonical: "/",
   },
 };
 
 export default function HomePage() {
-  // Show all confirmed services with dedicated authentic photography
   const allServices = servicesData;
 
   return (
@@ -37,9 +37,9 @@ export default function HomePage() {
               <div className="trust-icon-box">
                 <Sparkles size={24} />
               </div>
-              <h3 className="trust-title">Finitions sans traces</h3>
+              <h3 className="trust-title">Finitions soignées sans traces</h3>
               <p className="trust-desc">
-                Utilisation de matériel professionnel (raclettes de précision, perches télescopiques eau pure, mouilleurs microfibres) pour un résultat net sans rayures.
+                Matériel professionnel de haute précision (raclettes ergonomiques, mouilleurs microfibres, perches carbone eau pure, aspiration et lavage des sols) pour un résultat net et durable.
               </p>
             </div>
 
@@ -47,9 +47,9 @@ export default function HomePage() {
               <div className="trust-icon-box">
                 <ShieldCheck size={24} />
               </div>
-              <h3 className="trust-title">Toutes Hauteurs &amp; Sécurité</h3>
+              <h3 className="trust-title">Vitrages &amp; Locaux Professionnels</h3>
               <p className="trust-desc">
-                Intervention en nacelle élévatrice articulée et perches carbone pour atteindre en toute sécurité les façades vitrées et verrières jusqu&apos;au 4ème étage.
+                Prestations adaptées aux vitres toutes hauteurs (nacelle jusqu&apos;au 4ème étage) ainsi qu&apos;aux bureaux, commerces et cabinets de soins pour une propreté continue.
               </p>
             </div>
 
@@ -57,24 +57,93 @@ export default function HomePage() {
               <div className="trust-icon-box">
                 <MapPin size={24} />
               </div>
-              <h3 className="trust-title">Ancrage Local (66)</h3>
+              <h3 className="trust-title">Artisan Local de Proximité (66)</h3>
               <p className="trust-desc">
-                Basé à Thuir (Mas Maurette), nous intervenons sur l&apos;ensemble des Pyrénées-Orientales auprès des particuliers comme des commerçants et locaux d&apos;entreprises.
+                Basé à Thuir (Mas Maurette), Farid Hammoudi intervient sur l&apos;ensemble des Pyrénées-Orientales : Thuir, communauté urbaine de Perpignan Méditerranée et communes environnantes.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 3. Services Preview Section */}
-      <section className="section" aria-labelledby="services-preview-heading">
+      {/* 3. 4 Main Categories Overview */}
+      <section className="section categories-overview-section" aria-labelledby="categories-heading">
         <div className="container">
           <div className="section-header">
-            <span className="section-subtitle">Nos Domaines d&apos;Expertise</span>
-            <h2 id="services-preview-heading">Prestations de nettoyage sur mesure</h2>
+            <span className="section-subtitle">Nos Domaines d&apos;Intervention</span>
+            <h2 id="categories-heading">Une offre complète de nettoyage professionnel</h2>
             <div className="gold-line"></div>
             <p className="section-lead">
-              De la verrière résidentielle de caractère à la façade vitrée d&apos;immeuble en nacelle, découvrez nos solutions d&apos;entretien professionnelles.
+              FL Clean AR élargit ses prestations pour répondre aux besoins des professionnels tout en conservant son savoir-faire historique sur les surfaces vitrées.
+            </p>
+          </div>
+
+          <div className="categories-card-grid">
+            {serviceCategories.map((cat) => {
+              const Icon =
+                cat.id === "vitres"
+                  ? Sparkles
+                  : cat.id === "bureaux"
+                  ? Building2
+                  : cat.id === "commerces"
+                  ? Store
+                  : Stethoscope;
+
+              return (
+                <div key={cat.id} className="category-overview-card">
+                  <div className="cat-card-header">
+                    <div className="cat-card-icon">
+                      <Icon size={24} />
+                    </div>
+                    <span className="cat-target-badge">{cat.targetAudience}</span>
+                  </div>
+                  <h3 className="cat-card-title">{cat.title}</h3>
+                  <p className="cat-card-desc">{cat.shortDescription}</p>
+
+                  <ul className="cat-scope-list">
+                    {cat.scopePoints.slice(0, 3).map((item, idx) => (
+                      <li key={idx} className="cat-scope-item">
+                        <CheckCircle2 size={15} className="cat-scope-check" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {cat.importantNotice && (
+                    <div className="cat-notice-box">
+                      <span className="cat-notice-tag">Précision déontologique</span>
+                      <p className="cat-notice-text">{cat.importantNotice}</p>
+                    </div>
+                  )}
+
+                  <div className="cat-card-footer">
+                    <Link href={`/services#${cat.id}`} className="btn btn-outline btn-sm">
+                      <span>Voir les prestations</span>
+                      <ArrowRight size={14} />
+                    </Link>
+                    <Link
+                      href={`/contact?service=${encodeURIComponent(cat.title)}`}
+                      className="btn btn-primary btn-sm"
+                    >
+                      <span>Demander un devis</span>
+                    </Link>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Detailed Services Grid */}
+      <section className="section section-light" aria-labelledby="services-preview-heading">
+        <div className="container">
+          <div className="section-header">
+            <span className="section-subtitle">Prestations Détaillées</span>
+            <h2 id="services-preview-heading">Nos services adaptés à chaque besoin</h2>
+            <div className="gold-line"></div>
+            <p className="section-lead">
+              De la verrière résidentielle et l&apos;accès en nacelle élévatrice au nettoyage de bureaux, boutiques et cabinets de soins.
             </p>
           </div>
 
@@ -86,22 +155,22 @@ export default function HomePage() {
 
           <div className="services-footer-cta">
             <Link href="/services" className="btn btn-outline btn-lg">
-              <span>Découvrir le détail de tous nos services</span>
+              <span>Consulter l&apos;ensemble de nos services en détail</span>
               <ArrowRight size={18} />
             </Link>
           </div>
         </div>
       </section>
 
-      {/* 4. Portfolio Preview Section (Authentic Photos Only) */}
-      <section className="section section-light" aria-labelledby="portfolio-preview-heading">
+      {/* 5. Portfolio Preview Section (Authentic Photos Only) */}
+      <section className="section" aria-labelledby="portfolio-preview-heading">
         <div className="container">
           <div className="section-header">
-            <span className="section-subtitle">Chantiers Réels &amp; Photographies Authentiques</span>
-            <h2 id="portfolio-preview-heading">Nos réalisations en images</h2>
+            <span className="section-subtitle">Photographies Authentiques</span>
+            <h2 id="portfolio-preview-heading">Nos réalisations &amp; espaces entretenus</h2>
             <div className="gold-line"></div>
             <p className="section-lead">
-              Photographies 100% authentiques issues de nos interventions réelles dans les Pyrénées-Orientales : nacelle élévatrice, baies vitrées de prestige, atriums et perche eau pure.
+              Photographies réelles sans filtre : nacelle élévatrice, baies vitrées cathédrale, verrières, espaces pause d&apos;entreprises, laboratoires commerciaux et cabinets de soins dans les Pyrénées-Orientales.
             </p>
           </div>
 
@@ -109,46 +178,49 @@ export default function HomePage() {
 
           <div className="portfolio-footer-cta">
             <Link href="/realisations" className="btn btn-primary btn-lg">
-              <span>Voir l&apos;ensemble de nos réalisations en détail</span>
+              <span>Voir toute la galerie de nos réalisations</span>
               <ArrowRight size={18} />
             </Link>
           </div>
         </div>
       </section>
 
-      {/* 5. Process Section */}
+      {/* 6. Customer Reviews Section (PHASE 2.1) */}
+      <CustomerReviews />
+
+      {/* 7. Process Section */}
       <ProcessSection />
 
-      {/* 6. FAQ Section */}
+      {/* 8. FAQ Section */}
       <HomeFAQ />
 
-      {/* 7. Local Identity & Values Section */}
+      {/* 9. Local Identity & Values Section */}
       <section className="section local-section" aria-labelledby="local-heading">
         <div className="container">
           <div className="local-grid">
             <div className="local-text-col">
               <span className="section-subtitle">Artisanat &amp; Proximité</span>
-              <h2 id="local-heading">Farid Hammoudi — Votre artisan vitres de confiance dans le 66</h2>
+              <h2 id="local-heading">Farid Hammoudi — Votre artisan de confiance dans le 66</h2>
               <div className="gold-line gold-line-left"></div>
               <p>
-                Basé à <strong>Thuir</strong>, <strong>FL Clean AR</strong> (FL Vitre 66) intervient auprès des particuliers et des professionnels exigeants qui recherchent une propreté irréprochable et durable.
+                Basé à <strong>Thuir (Mas Maurette)</strong>, <strong>FL Clean AR</strong> intervient auprès des particuliers et des professionnels exigeants qui recherchent une propreté irréprochable et un interlocuteur de confiance.
               </p>
               <p>
-                Farid Hammoudi réalise lui-même chaque prestation avec des équipements professionnels certifiés : nacelle élévatrice articulée pour les immeubles et accès complexes, perches télescopiques en fibre de carbone à eau pure osmosée, et raclage manuel sans rayures pour les vérandas et intérieurs.
+                Farid Hammoudi assure personnellement le suivi et la réalisation des chantiers avec un outillage adapté : nacelle élévatrice pour les façades hautes, perches télescopiques à eau pure déminéralisée, raclage manuel précis pour les vitrages intérieurs, et protocoles soignés pour l&apos;entretien des sols et bureaux.
               </p>
 
               <div className="local-keypoints">
                 <div className="keypoint">
                   <CheckCircle2 size={18} className="keypoint-icon" />
-                  <span>Interventions toutes hauteurs (sol, perche télescopique &amp; nacelle)</span>
+                  <span>Interventions toutes hauteurs (sol, perche télescopique &amp; nacelle articulée)</span>
                 </div>
                 <div className="keypoint">
                   <CheckCircle2 size={18} className="keypoint-icon" />
-                  <span>Système eau pure déminéralisée écologique sans chimie</span>
+                  <span>Entretien régulier ou ponctuel de bureaux, commerces et espaces professionnels</span>
                 </div>
                 <div className="keypoint">
                   <CheckCircle2 size={18} className="keypoint-icon" />
-                  <span>Déplacement dans tout le département des Pyrénées-Orientales</span>
+                  <span>Interventions sur Thuir, Perpignan Méditerranée et l&apos;ensemble du 66</span>
                 </div>
               </div>
 
@@ -171,8 +243,8 @@ export default function HomePage() {
                   loading="lazy"
                 />
                 <div className="local-caption-badge">
-                  <span className="badge-caption-title">Farid Hammoudi en nacelle</span>
-                  <span className="badge-caption-sub">Artisan laveur de vitre • FL Clean AR</span>
+                  <span className="badge-caption-title">Farid Hammoudi</span>
+                  <span className="badge-caption-sub">Artisan FL Clean AR • Thuir (66)</span>
                 </div>
               </div>
             </div>
@@ -180,20 +252,20 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 8. Final Quote Section */}
+      {/* 10. Final Quote Section */}
       <section className="section section-primary" id="contact" aria-labelledby="final-cta-heading">
         <div className="container">
           <div className="quote-section-grid">
             <div className="quote-info-col">
               <span className="section-subtitle" style={{ color: "var(--color-gold-light)" }}>
-                Parlons de votre projet
+                Parlons de vos besoins
               </span>
               <h2 id="final-cta-heading" style={{ color: "#ffffff" }}>
-                Contactez-nous pour étudier votre besoin et obtenir un devis
+                Contactez-nous pour étudier votre besoin et demander un devis
               </h2>
               <div className="gold-line gold-line-left"></div>
               <p style={{ color: "rgba(255, 255, 255, 0.9)" }}>
-                Particulier ou professionnel, transmettez-nous les détails de vos surfaces vitrées. Nous analysons votre demande et vous apportons une réponse claire adaptée à vos contraintes.
+                Particulier ou professionnel, transmettez-nous les détails de vos surfaces vitrées, bureaux ou espaces d&apos;activité. Nous analysons votre demande et vous apportons une proposition sur mesure sous 24h à 48h.
               </p>
 
               <div className="contact-direct-cards">
@@ -227,7 +299,7 @@ export default function HomePage() {
 
               <div className="quote-guarantee-note">
                 <p>
-                  * Devis personnalisé sans engagement. Déplacement pour repérage technique si nécessaire selon la configuration du site.
+                  * Devis personnalisé gratuit et sans engagement. Déplacement pour visite technique si nécessaire selon la configuration du site.
                 </p>
               </div>
             </div>

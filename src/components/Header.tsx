@@ -40,6 +40,7 @@ export default function Header() {
     { href: "/", label: "Accueil" },
     { href: "/services", label: "Services" },
     { href: "/realisations", label: "Réalisations" },
+    { href: "/#avis", label: "Avis" },
     { href: "/a-propos", label: "À propos" },
     { href: "/contact", label: "Contact" },
   ];

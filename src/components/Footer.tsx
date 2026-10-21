@@ -54,6 +54,9 @@ export default function Footer() {
                 <Link href="/realisations">Galerie &amp; réalisations</Link>
               </li>
               <li>
+                <Link href="/#avis">Avis clients &amp; témoignages</Link>
+              </li>
+              <li>
                 <Link href="/a-propos">À propos de l&apos;entreprise</Link>
               </li>
               <li>
@@ -74,13 +77,13 @@ export default function Footer() {
                 <Link href="/services/verandas-baies-vitrees">Vérandas &amp; baies coulissantes</Link>
               </li>
               <li>
-                <Link href="/services/vitres-fenetres-particuliers">Fenêtres particuliers</Link>
+                <Link href="/services/nettoyage-bureaux-locaux">Nettoyage de bureaux &amp; locaux</Link>
               </li>
               <li>
-                <Link href="/services/vitrines-commerciales">Vitrines de magasins</Link>
+                <Link href="/services/nettoyage-commerces-boutiques">Commerces &amp; espaces de vente</Link>
               </li>
               <li>
-                <Link href="/services/locaux-professionnels">Surfaces vitrées de bureaux</Link>
+                <Link href="/services/nettoyage-cabinets-soins">Cabinets de soins &amp; kinésithérapie</Link>
               </li>
               <li>
                 <Link href="/services/acces-hauteur-adapte">Nettoyage en hauteur &amp; nacelle</Link>

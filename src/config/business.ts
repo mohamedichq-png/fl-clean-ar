@@ -52,6 +52,11 @@ export interface BusinessConfig {
     defaultMessage: string;
     url: string;
   };
+  googleReviews: {
+    profileUrl: string;
+    reviewSubmitUrl: string;
+    isPendingFinalConfirmation: boolean;
+  };
   brandColors: {
     deepGreen: string;
     gold: string;
@@ -72,8 +77,8 @@ export const businessConfig: BusinessConfig = {
   brandName: "FL Clean AR",
   legalNameCandidate: "FL Vitre 66 / FL Clean AR",
   contactPerson: "Farid HAMMOUDI",
-  tagline: "Le nettoyage de vitres professionnel, en toute transparence.",
-  shortDescription: "Entreprise spécialisée dans le nettoyage professionnel de vitres, verrières, vitrines et façades vitrées pour particuliers et professionnels dans les Pyrénées-Orientales.",
+  tagline: "Nettoyage professionnel de vitres et de locaux dans les Pyrénées-Orientales.",
+  shortDescription: "Des prestations de nettoyage adaptées aux vitrages, bureaux et espaces professionnels. Entreprise artisanale basée à Thuir intervenant sur l'ensemble du 66.",
   phone: {
     raw: "0766549235",
     display: "07 66 54 92 35",
@@ -114,8 +119,13 @@ export const businessConfig: BusinessConfig = {
   whatsapp: {
     enabled: true,
     number: "33766549235",
-    defaultMessage: "Bonjour FL Clean AR, je souhaite obtenir des renseignements ou un devis pour un nettoyage de vitres.",
-    url: "https://wa.me/33766549235?text=Bonjour%20FL%20Clean%20AR%2C%20je%20souhaite%20obtenir%20des%20renseignements%20ou%20un%20devis%20pour%20un%20nettoyage%20de%20vitres.",
+    defaultMessage: "Bonjour FL Clean AR, je souhaite obtenir des renseignements ou un devis pour des prestations de nettoyage.",
+    url: "https://wa.me/33766549235?text=Bonjour%20FL%20Clean%20AR%2C%20je%20souhaite%20obtenir%20des%20renseignements%20ou%20un%20devis%20pour%20des%20prestations%20de%20nettoyage.",
+  },
+  googleReviews: {
+    profileUrl: "https://www.google.com/maps/search/?api=1&query=FL+Clean+AR+Thuir",
+    reviewSubmitUrl: "https://www.google.com/maps/search/?api=1&query=FL+Clean+AR+Thuir",
+    isPendingFinalConfirmation: true,
   },
   brandColors: {
     deepGreen: "#073F32",

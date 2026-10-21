@@ -158,6 +158,13 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                 {service.detailedParagraphs.map((para, i) => (
                   <p key={i}>{para}</p>
                 ))}
+
+                {service.importantNotice && (
+                  <div className="service-editorial-notice" role="note">
+                    <ShieldCheck size={20} className="notice-icon" />
+                    <p>{service.importantNotice}</p>
+                  </div>
+                )}
               </div>
 
               {/* Key Features */}
@@ -215,7 +222,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
               <div className="sidebar-sticky-card">
                 <h3 className="sidebar-title">Demander un devis</h3>
                 <p className="sidebar-subtitle">
-                  Proposition claire et personnalisée pour vos surfaces vitrées à Thuir, Perpignan et dans tout le 66.
+                  Proposition claire et personnalisée pour vos surfaces vitrées, bureaux ou locaux professionnels à Thuir, Perpignan et dans tout le 66.
                 </p>
 
                 <div className="sidebar-actions">

@@ -6,9 +6,9 @@ import ProjectGallery from "@/components/ProjectGallery";
 import { businessConfig } from "@/config/business";
 
 export const metadata = {
-  title: "Nos Réalisations & Chantiers de Nettoyage de Vitres (66) | FL Clean AR",
+  title: "Nos Réalisations & Espaces Entretenus (66) | FL Clean AR",
   description:
-    "Galerie de nos chantiers réels de nettoyage de verrières, vérandas, façades et toitures vitrées dans les Pyrénées-Orientales. Photographies authentiques sans retouche artificielle.",
+    "Galerie authentique de nos chantiers de vitrages (nacelle, vérandas, verrières) et typologies d'espaces professionnels (bureaux, commerces, cabinets de soins) dans les Pyrénées-Orientales.",
   alternates: {
     canonical: "/realisations",
   },
@@ -23,11 +23,11 @@ export default function RealisationsPage() {
       <section className="section section-light page-hero" aria-labelledby="portfolio-page-heading">
         <div className="container">
           <div className="section-header">
-            <span className="section-subtitle">Photographies de Chantiers</span>
-            <h1 id="portfolio-page-heading">Nos Réalisations en Pyrénées-Orientales</h1>
+            <span className="section-subtitle">Photographies Authentiques</span>
+            <h1 id="portfolio-page-heading">Nos Réalisations &amp; Espaces Entretenus (66)</h1>
             <div className="gold-line"></div>
             <p className="section-lead">
-              Découvrez nos interventions concrètes sur verrières résidentielles, toitures vitrées et vérandas. Chez FL Clean AR, nous présentons exclusivement des photographies réelles de notre travail, garantissant une authenticité sans filtre ni retouche.
+              Découvrez nos interventions concrètes sur verrières résidentielles, toitures vitrées, baies cathédrale et typologies d&apos;espaces professionnels (bureaux, commerces, cabinets de soins). Chez FL Clean AR, nous présentons exclusivement des photographies authentiques.
             </p>
           </div>
         </div>
@@ -42,9 +42,9 @@ export default function RealisationsPage() {
               <Camera size={22} />
             </div>
             <div className="transparency-text">
-              <h3 className="transparency-title">Charte d&apos;authenticité photographique</h3>
+              <h3 className="transparency-title">Charte d&apos;authenticité photographique FL Clean AR</h3>
               <p className="transparency-desc">
-                Conformément à notre charte de transparence, les clichés présentés ci-dessous correspondent fidèlement à nos interventions réelles. Nous n&apos;utilisons aucune image de synthèse, aucun faux avant/après monté de toutes pièces, et aucun visuel d&apos;illustration tiers déconnecté de notre savoir-faire. Cliquez sur chaque cliché pour l&apos;agrandir et découvrir le détail des finitions.
+                Conformément à notre engagement de transparence intégrale, tous les clichés présentés ci-dessous correspondent à de véritables photographies de terrain. Nous n&apos;utilisons aucune image de synthèse ni visuel de banque d&apos;images générique. Les photographies d&apos;intérieurs professionnels (bureaux, réserves de commerces, cabinets de kinésithérapie) illustrent les typologies d&apos;espaces pris en charge par notre entreprise dans les Pyrénées-Orientales.
               </p>
             </div>
           </div>
@@ -55,10 +55,10 @@ export default function RealisationsPage() {
           {/* Project Inquiry Banner */}
           <div className="gallery-cta-banner">
             <div className="banner-content">
-              <span className="banner-eyebrow">Votre chantier mérite la même exigence</span>
-              <h3 className="banner-heading">Vous disposez d&apos;une verrière ou de vitrages similaires ?</h3>
+              <span className="banner-eyebrow">Votre espace mérite la même exigence</span>
+              <h3 className="banner-heading">Vous disposez d&apos;un local, de bureaux ou de vitrages à entretenir ?</h3>
               <p className="banner-p">
-                Chaque surface a ses spécificités d&apos;accès et d&apos;exposition. Nous nous déplaçons ou étudions vos photos pour vous proposer un devis sur mesure.
+                Chaque surface a ses spécificités d&apos;accès, de fréquence et d&apos;exposition. Nous nous déplaçons ou étudions vos photos pour vous proposer un devis sur mesure gratuit.
               </p>
             </div>
             <div className="banner-action">
