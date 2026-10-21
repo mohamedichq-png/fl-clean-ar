@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { Send, CheckCircle2, AlertCircle, Phone, MessageSquare, Shield, Clock } from "lucide-react";
+import { Send, CheckCircle2, AlertCircle, Phone, MessageSquare, Shield, Clock, RefreshCw } from "lucide-react";
 import { businessConfig } from "@/config/business";
 import { servicesData } from "@/config/services";
 
@@ -13,16 +13,23 @@ function QuoteFormInner() {
   const [customerType, setCustomerType] = useState<"Particulier" | "Professionnel">("Particulier");
   const [formData, setFormData] = useState({
     fullName: "",
+    companyName: "",
     email: "",
     phone: "",
     service: "",
     location: "",
     preferredDate: "",
-    surfaceDetails: "",
     message: "",
     consent: false,
     website_trap: "", // Honeypot field for bots
   });
+
+  const [submittedSnapshot, setSubmittedSnapshot] = useState<{
+    fullName: string;
+    location: string;
+    service: string;
+    message: string;
+  } | null>(null);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<{
@@ -53,7 +60,7 @@ function QuoteFormInner() {
     setIsSubmitting(true);
     setStatus({ type: "idle", message: "" });
 
-    // Client-side quick check
+    // Client-side validation check
     if (!formData.fullName.trim() || !formData.email.trim() || !formData.phone.trim() || !formData.location.trim()) {
       setStatus({
         type: "error",
@@ -85,19 +92,27 @@ function QuoteFormInner() {
       const data = await response.json();
 
       if (response.ok && data.success) {
+        setSubmittedSnapshot({
+          fullName: formData.fullName,
+          location: formData.location,
+          service: formData.service,
+          message: formData.message,
+        });
+
         setStatus({
           type: "success",
-          message: data.message || "Votre demande a bien été envoyée. Nous vous contacterons très prochainement.",
+          message: data.message || "Votre demande a bien été transmise à FL Clean AR. Nous vous recontacterons très prochainement.",
         });
-        // Reset form
+
+        // Reset inputs
         setFormData({
           fullName: "",
+          companyName: "",
           email: "",
           phone: "",
           service: "",
           location: "",
           preferredDate: "",
-          surfaceDetails: "",
           message: "",
           consent: false,
           website_trap: "",
@@ -111,34 +126,70 @@ function QuoteFormInner() {
     } catch {
       setStatus({
         type: "error",
-        message: "Impossible de joindre le serveur. Vous pouvez nous contacter par téléphone au 07 66 54 92 35.",
+        message: `Impossible de joindre le serveur. Vous pouvez contacter directement Farid Hammoudi au ${businessConfig.phone.display}.`,
       });
     } finally {
       setIsSubmitting(false);
     }
   };
 
+  const getWhatsAppSummaryUrl = () => {
+    if (!submittedSnapshot) return businessConfig.whatsapp.url;
+    const text = `Bonjour Farid Hammoudi (FL Clean AR), je viens de vous envoyer une demande de devis sur votre site :%0A- Nom : ${encodeURIComponent(submittedSnapshot.fullName)}%0A- Ville : ${encodeURIComponent(submittedSnapshot.location)}%0A- Prestation : ${encodeURIComponent(submittedSnapshot.service || "Non spécifié")}%0A- Précisions : ${encodeURIComponent(submittedSnapshot.message || "Étude de devis")}`;
+    return `https://wa.me/${businessConfig.whatsapp.number}?text=${text}`;
+  };
+
   return (
     <div className="quote-form-card" id="devis">
       <div className="form-header">
-        <h3 className="form-title">Demande de devis gratuit & personnalisé</h3>
+        <h3 className="form-title">Demande de devis personnalisé</h3>
         <p className="form-subtitle">
           Remplissez ce formulaire pour recevoir une proposition adaptée à vos surfaces. Réponse sous 24h à 48h.
         </p>
       </div>
 
       {status.type === "success" ? (
-        <div className="status-box status-success" role="alert">
-          <CheckCircle2 size={24} className="status-icon" />
-          <div>
-            <h4 className="status-title">Demande enregistrée avec succès</h4>
+        <div className="status-box status-success" role="alert" aria-live="polite">
+          <CheckCircle2 size={28} className="status-icon" aria-hidden="true" />
+          <div className="status-body">
+            <h4 className="status-title">Demande transmise avec succès</h4>
             <p className="status-text">{status.message}</p>
-            <p className="status-sub">
-              Besoin d'un renseignement immédiat ? Contactez-nous directement au{" "}
+
+            {businessConfig.whatsapp.enabled && (
+              <div className="status-wa-prompt">
+                <p className="status-wa-hint">
+                  <strong>Vous souhaitez une réponse encore plus rapide ?</strong> Transmettez également un récapitulatif directement sur le WhatsApp de Farid Hammoudi :
+                </p>
+                <a
+                  href={getWhatsAppSummaryUrl()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary btn-sm btn-wa-followup"
+                >
+                  <MessageSquare size={16} />
+                  <span>Envoyer un message sur WhatsApp</span>
+                </a>
+              </div>
+            )}
+
+            <div className="status-call-prompt">
+              <span>Ou appelez directement : </span>
               <a href={businessConfig.phone.href} className="status-phone-link">
                 <strong>{businessConfig.phone.display}</strong>
               </a>
-            </p>
+            </div>
+
+            <button
+              type="button"
+              className="btn btn-outline btn-sm reset-form-btn"
+              onClick={() => {
+                setStatus({ type: "idle", message: "" });
+                setSubmittedSnapshot(null);
+              }}
+            >
+              <RefreshCw size={14} />
+              <span>Faire une autre demande</span>
+            </button>
           </div>
         </div>
       ) : (
@@ -159,8 +210,12 @@ function QuoteFormInner() {
 
           {/* Customer Type Selector */}
           <div className="form-group">
-            <label className="form-label">Vous êtes :</label>
-            <div className="type-toggle-group" role="radiogroup" aria-label="Type de client">
+            <label className="form-label" id="customer-type-label">Vous êtes :</label>
+            <div
+              className="type-toggle-group"
+              role="radiogroup"
+              aria-labelledby="customer-type-label"
+            >
               <button
                 type="button"
                 role="radio"
@@ -182,24 +237,43 @@ function QuoteFormInner() {
             </div>
           </div>
 
-          {/* Row 1: Name & Phone */}
+          {/* Row 1: Name & Company (if pro or optional) */}
           <div className="form-row">
             <div className="form-group">
               <label htmlFor="fullName" className="form-label">
-                Nom & Prénom <span className="req">*</span>
+                Nom &amp; Prénom <span className="req">*</span>
               </label>
               <input
                 type="text"
                 id="fullName"
                 name="fullName"
                 required
+                aria-required="true"
                 value={formData.fullName}
                 onChange={handleChange}
-                placeholder="Ex. Farid Hammoudi"
+                placeholder="Ex. Jean Dupont"
                 className="form-input"
               />
             </div>
 
+            <div className="form-group">
+              <label htmlFor="companyName" className="form-label">
+                {customerType === "Professionnel" ? "Raison sociale / Société *" : "Nom de l'entreprise (facultatif)"}
+              </label>
+              <input
+                type="text"
+                id="companyName"
+                name="companyName"
+                value={formData.companyName}
+                onChange={handleChange}
+                placeholder={customerType === "Professionnel" ? "Ex. Cabinet Médical / Boutique..." : "Facultatif"}
+                className="form-input"
+              />
+            </div>
+          </div>
+
+          {/* Row 2: Phone & Email */}
+          <div className="form-row">
             <div className="form-group">
               <label htmlFor="phone" className="form-label">
                 Téléphone <span className="req">*</span>
@@ -209,16 +283,14 @@ function QuoteFormInner() {
                 id="phone"
                 name="phone"
                 required
+                aria-required="true"
                 value={formData.phone}
                 onChange={handleChange}
                 placeholder="Ex. 07 66 54 92 35"
                 className="form-input"
               />
             </div>
-          </div>
 
-          {/* Row 2: Email & Location */}
-          <div className="form-row">
             <div className="form-group">
               <label htmlFor="email" className="form-label">
                 Adresse email <span className="req">*</span>
@@ -228,35 +300,37 @@ function QuoteFormInner() {
                 id="email"
                 name="email"
                 required
+                aria-required="true"
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="Ex. contact@exemple.fr"
                 className="form-input"
               />
             </div>
+          </div>
 
+          {/* Row 3: Location & Service */}
+          <div className="form-row">
             <div className="form-group">
               <label htmlFor="location" className="form-label">
-                Ville ou Code Postal (66) <span className="req">*</span>
+                Commune ou Code Postal (secteur 66) <span className="req">*</span>
               </label>
               <input
                 type="text"
                 id="location"
                 name="location"
                 required
+                aria-required="true"
                 value={formData.location}
                 onChange={handleChange}
                 placeholder="Ex. Thuir, Perpignan, Canet..."
                 className="form-input"
               />
             </div>
-          </div>
 
-          {/* Row 3: Service Requested & Preferred Date */}
-          <div className="form-row">
             <div className="form-group">
               <label htmlFor="service" className="form-label">
-                Prestation souhaitée
+                Type de prestation
               </label>
               <select
                 id="service"
@@ -271,30 +345,31 @@ function QuoteFormInner() {
                     {svc.title}
                   </option>
                 ))}
-                <option value="Autre demande">Autre demande spécifique</option>
+                <option value="Autre demande">Autre configuration spécifique</option>
               </select>
             </div>
+          </div>
 
-            <div className="form-group">
-              <label htmlFor="preferredDate" className="form-label">
-                Période d'intervention souhaitée (facultatif)
-              </label>
-              <input
-                type="text"
-                id="preferredDate"
-                name="preferredDate"
-                value={formData.preferredDate}
-                onChange={handleChange}
-                placeholder="Ex. Dès que possible, fin du mois..."
-                className="form-input"
-              />
-            </div>
+          {/* Row 4: Preferred Date */}
+          <div className="form-group">
+            <label htmlFor="preferredDate" className="form-label">
+              Période d&apos;intervention souhaitée (facultatif)
+            </label>
+            <input
+              type="text"
+              id="preferredDate"
+              name="preferredDate"
+              value={formData.preferredDate}
+              onChange={handleChange}
+              placeholder="Ex. Dès que possible, dans le mois, au printemps..."
+              className="form-input"
+            />
           </div>
 
           {/* Message Area */}
           <div className="form-group">
             <label htmlFor="message" className="form-label">
-              Précisions sur vos surfaces & vos besoins
+              Description de votre besoin &amp; des surfaces
             </label>
             <textarea
               id="message"
@@ -302,7 +377,7 @@ function QuoteFormInner() {
               rows={4}
               value={formData.message}
               onChange={handleChange}
-              placeholder="Indiquez par exemple le nombre approximatif de fenêtres, la présence d'une verrière ou véranda, la hauteur d'accès ou toute contrainte particulière..."
+              placeholder="Indiquez par exemple le nombre approximatif de vitres ou fenêtres, la présence d'une verrière, véranda ou baie vitrée en hauteur, les éventuelles contraintes d'accès..."
               className="form-textarea"
             ></textarea>
           </div>
@@ -314,12 +389,13 @@ function QuoteFormInner() {
               id="consent"
               name="consent"
               required
+              aria-required="true"
               checked={formData.consent}
               onChange={handleChange}
               className="form-checkbox"
             />
             <label htmlFor="consent" className="checkbox-label">
-              J'accepte que les informations saisies soient traitées par FL Clean AR afin d'établir mon devis personnalisé, conformément à la{" "}
+              J&apos;accepte que les informations saisies soient traitées par FL Clean AR afin d&apos;étudier mon besoin et d&apos;établir un devis, conformément à la{" "}
               <a href="/politique-de-confidentialite" target="_blank" className="privacy-link">
                 politique de confidentialité
               </a>. <span className="req">*</span>
@@ -328,8 +404,8 @@ function QuoteFormInner() {
 
           {/* Error Notice */}
           {status.type === "error" && (
-            <div className="status-box status-error" role="alert">
-              <AlertCircle size={20} className="status-icon" />
+            <div className="status-box status-error" role="alert" aria-live="assertive">
+              <AlertCircle size={20} className="status-icon" aria-hidden="true" />
               <span>{status.message}</span>
             </div>
           )}
@@ -352,15 +428,15 @@ function QuoteFormInner() {
             </button>
           </div>
 
-          {/* Reassurance text */}
+          {/* Reassurance items */}
           <div className="form-guarantees">
             <div className="guarantee-item">
               <Shield size={14} />
-              <span>Devis gratuit & sans engagement</span>
+              <span>Devis personnalisé sans engagement</span>
             </div>
             <div className="guarantee-item">
               <Clock size={14} />
-              <span>Réponse sous 24h à 48h</span>
+              <span>Étude attentive sous 24h à 48h</span>
             </div>
           </div>
         </form>

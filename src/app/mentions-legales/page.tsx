@@ -7,6 +7,9 @@ import { businessConfig } from "@/config/business";
 export const metadata = {
   title: "Mentions Légales | FL Clean AR",
   description: "Mentions légales du site officiel de FL Clean AR conformément aux dispositions de la loi française.",
+  alternates: {
+    canonical: "/mentions-legales",
+  },
 };
 
 export default function MentionsLegalesPage() {

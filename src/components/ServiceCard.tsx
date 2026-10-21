@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, ChevronRight } from "lucide-react";
 import { ServiceItem } from "@/config/services";
 
 interface ServiceCardProps {
@@ -29,7 +29,11 @@ export default function ServiceCard({ service, featured = false }: ServiceCardPr
       </div>
 
       <div className="card-content">
-        <h3 className="service-title">{service.title}</h3>
+        <h3 className="service-title">
+          <Link href={`/services/${service.slug}`} className="service-title-link">
+            {service.title}
+          </Link>
+        </h3>
         <p className="service-desc">{service.shortDescription}</p>
 
         <ul className="service-features-list">
@@ -45,6 +49,14 @@ export default function ServiceCard({ service, featured = false }: ServiceCardPr
 
         <div className="card-footer">
           <Link
+            href={`/services/${service.slug}`}
+            className="service-details-link"
+          >
+            <span>Détails &amp; tarifs</span>
+            <ChevronRight size={14} />
+          </Link>
+
+          <Link
             href={`/contact?service=${encodeURIComponent(service.title)}`}
             className="btn btn-primary btn-sm service-cta"
           >
@@ -53,8 +65,6 @@ export default function ServiceCard({ service, featured = false }: ServiceCardPr
           </Link>
         </div>
       </div>
-
-      
     </article>
   );
 }

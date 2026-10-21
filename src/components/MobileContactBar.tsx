@@ -33,7 +33,7 @@ export default function MobileContactBar() {
       <Link
         href="/contact"
         className="mobile-bar-btn quote-btn"
-        aria-label="Demander un devis gratuit"
+        aria-label="Demander un devis"
       >
         <FileText size={18} />
         <span>Devis</span>

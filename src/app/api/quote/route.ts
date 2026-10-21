@@ -12,6 +12,7 @@ export async function POST(request: Request) {
 
     const {
       fullName,
+      companyName,
       email,
       phone,
       customerType,
@@ -55,35 +56,58 @@ export async function POST(request: Request) {
 
     if (!consent) {
       return NextResponse.json(
-        { success: false, error: "Veuillez cocher la case autorisant le traitement de vos données pour votre devis." },
+        { success: false, error: "Veuillez accepter le traitement de vos données pour l'étude de votre devis." },
         { status: 400 }
       );
     }
 
-    // 3. Log or forward lead
-    // In production, configure an email provider (Resend, SendGrid, SMTP) or CRM webhook.
+    // 3. Structured Lead Record
     const leadRecord = {
       timestamp: new Date().toISOString(),
       fullName: fullName.trim(),
+      companyName: companyName ? String(companyName).trim() : undefined,
       email: email.trim().toLowerCase(),
       phone: phone.trim(),
       customerType: customerType || "Particulier",
       service: service || "Non spécifié",
       location: location.trim(),
-      preferredDate: preferredDate || "Non précisée",
+      preferredDate: preferredDate ? String(preferredDate).trim() : "Non précisée",
       message: (message || "").trim(),
     };
 
-    console.log("Nouvelle demande de devis reçue :", JSON.stringify(leadRecord, null, 2));
+    console.log("[FL Clean AR Lead]", JSON.stringify(leadRecord, null, 2));
+
+    // Optional webhook forwarding if environment variable is set
+    const webhookUrl = process.env.LEAD_WEBHOOK_URL;
+    if (webhookUrl) {
+      try {
+        await fetch(webhookUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(leadRecord),
+        });
+      } catch (webhookErr) {
+        console.error("Erreur transmission webhook lead :", webhookErr);
+      }
+    }
 
     return NextResponse.json({
       success: true,
-      message: "Votre demande de devis a bien été transmise à FL Clean AR. Nous l'étudions avec attention et vous recontacterons sous 24 à 48 heures.",
+      message: "Votre demande de devis a bien été transmise à FL Clean AR. Farid Hammoudi étudiera votre demande avec attention et vous recontactera rapidement.",
+      data: {
+        fullName: leadRecord.fullName,
+        location: leadRecord.location,
+        service: leadRecord.service,
+        phone: leadRecord.phone,
+      },
     });
   } catch (err) {
     console.error("Erreur traitement devis :", err);
     return NextResponse.json(
-      { success: false, error: "Une erreur technique s'est produite lors de l'envoi. Vous pouvez nous contacter directement par téléphone au 07 66 54 92 35." },
+      {
+        success: false,
+        error: "Une erreur technique s'est produite lors de l'envoi. Vous pouvez nous contacter directement par téléphone au 07 66 54 92 35.",
+      },
       { status: 500 }
     );
   }

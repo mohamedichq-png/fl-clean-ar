@@ -1,20 +1,23 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, ShieldCheck, Sparkles, CheckCircle2, Phone, MessageSquare, MapPin, Award } from "lucide-react";
+import { ArrowRight, ShieldCheck, Sparkles, CheckCircle2, Phone, MessageSquare, MapPin } from "lucide-react";
 import Hero from "@/components/Hero";
 import ServiceCard from "@/components/ServiceCard";
 import ProjectGallery from "@/components/ProjectGallery";
 import ProcessSection from "@/components/ProcessSection";
+import HomeFAQ from "@/components/HomeFAQ";
 import QuoteForm from "@/components/QuoteForm";
 import { servicesData } from "@/config/services";
 import { businessConfig } from "@/config/business";
-import { assetInventory } from "@/config/assets";
 
 export const metadata = {
-  title: "FL Clean AR | Spécialiste Nettoyage de Vitres & Verrières (66)",
+  title: "FL Clean AR | Nettoyage Professionnel de Vitres, Verrières & Façades (66)",
   description:
-    "Nettoyage professionnel de vitres, verrières, vérandas et vitrines de commerces dans les Pyrénées-Orientales. Travail soigné, transparence totale et devis gratuit.",
+    "Nettoyage professionnel de vitres, verrières, vérandas, vitrines et façades d'immeubles dans les Pyrénées-Orientales (Thuir, Perpignan). Artisan qualifié, matériel adapté et devis personnalisé.",
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default function HomePage() {
@@ -44,7 +47,7 @@ export default function HomePage() {
               <div className="trust-icon-box">
                 <ShieldCheck size={24} />
               </div>
-              <h3 className="trust-title">Toutes Hauteurs & Sécurité</h3>
+              <h3 className="trust-title">Toutes Hauteurs &amp; Sécurité</h3>
               <p className="trust-desc">
                 Intervention en nacelle élévatrice articulée et perches carbone pour atteindre en toute sécurité les façades vitrées et verrières jusqu&apos;au 4ème étage.
               </p>
@@ -56,7 +59,7 @@ export default function HomePage() {
               </div>
               <h3 className="trust-title">Ancrage Local (66)</h3>
               <p className="trust-desc">
-                Basé à Thuir (Mas Maurette), nous intervenons sur l&apos;ensemble des Pyrénées-Orientales auprès des particuliers comme des commerçants et entreprises.
+                Basé à Thuir (Mas Maurette), nous intervenons sur l&apos;ensemble des Pyrénées-Orientales auprès des particuliers comme des commerçants et locaux d&apos;entreprises.
               </p>
             </div>
           </div>
@@ -94,7 +97,7 @@ export default function HomePage() {
       <section className="section section-light" aria-labelledby="portfolio-preview-heading">
         <div className="container">
           <div className="section-header">
-            <span className="section-subtitle">Chantiers Réels & Photographies Authentiques</span>
+            <span className="section-subtitle">Chantiers Réels &amp; Photographies Authentiques</span>
             <h2 id="portfolio-preview-heading">Nos réalisations en images</h2>
             <div className="gold-line"></div>
             <p className="section-lead">
@@ -106,7 +109,7 @@ export default function HomePage() {
 
           <div className="portfolio-footer-cta">
             <Link href="/realisations" className="btn btn-primary btn-lg">
-              <span>Voir l&apos;ensemble de nos 11 réalisations en détail</span>
+              <span>Voir l&apos;ensemble de nos réalisations en détail</span>
               <ArrowRight size={18} />
             </Link>
           </div>
@@ -116,12 +119,15 @@ export default function HomePage() {
       {/* 5. Process Section */}
       <ProcessSection />
 
-      {/* 6. Local Identity & Values Section */}
+      {/* 6. FAQ Section */}
+      <HomeFAQ />
+
+      {/* 7. Local Identity & Values Section */}
       <section className="section local-section" aria-labelledby="local-heading">
         <div className="container">
           <div className="local-grid">
             <div className="local-text-col">
-              <span className="section-subtitle">Artisanat & Proximité</span>
+              <span className="section-subtitle">Artisanat &amp; Proximité</span>
               <h2 id="local-heading">Farid Hammoudi — Votre artisan vitres de confiance dans le 66</h2>
               <div className="gold-line gold-line-left"></div>
               <p>
@@ -134,7 +140,7 @@ export default function HomePage() {
               <div className="local-keypoints">
                 <div className="keypoint">
                   <CheckCircle2 size={18} className="keypoint-icon" />
-                  <span>Interventions toutes hauteurs (sol, perche télescopique & nacelle)</span>
+                  <span>Interventions toutes hauteurs (sol, perche télescopique &amp; nacelle)</span>
                 </div>
                 <div className="keypoint">
                   <CheckCircle2 size={18} className="keypoint-icon" />
@@ -174,7 +180,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 7. Final Quote Section */}
+      {/* 8. Final Quote Section */}
       <section className="section section-primary" id="contact" aria-labelledby="final-cta-heading">
         <div className="container">
           <div className="quote-section-grid">
@@ -183,11 +189,11 @@ export default function HomePage() {
                 Parlons de votre projet
               </span>
               <h2 id="final-cta-heading" style={{ color: "#ffffff" }}>
-                Contactez-nous pour obtenir un devis adapté à vos besoins
+                Contactez-nous pour étudier votre besoin et obtenir un devis
               </h2>
               <div className="gold-line gold-line-left"></div>
               <p style={{ color: "rgba(255, 255, 255, 0.9)" }}>
-                Particulier ou professionnel, transmettez-nous les détails de vos surfaces vitrées. Nous analysons votre demande et vous apportons une réponse claire sous 24 à 48 heures ouvrées.
+                Particulier ou professionnel, transmettez-nous les détails de vos surfaces vitrées. Nous analysons votre demande et vous apportons une réponse claire adaptée à vos contraintes.
               </p>
 
               <div className="contact-direct-cards">
@@ -221,7 +227,7 @@ export default function HomePage() {
 
               <div className="quote-guarantee-note">
                 <p>
-                  * Devis gratuit sans obligation d&apos;achat. Déplacement pour repérage technique si nécessaire selon la configuration du site.
+                  * Devis personnalisé sans engagement. Déplacement pour repérage technique si nécessaire selon la configuration du site.
                 </p>
               </div>
             </div>

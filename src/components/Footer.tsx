@@ -34,7 +34,7 @@ export default function Footer() {
               </span>
               <span className="badge badge-gold">
                 <ShieldCheck size={13} />
-                <span>Devis gratuit</span>
+                <span>Devis sur mesure</span>
               </span>
             </div>
           </div>
@@ -51,10 +51,10 @@ export default function Footer() {
                 <Link href="/services">Nos services de nettoyage</Link>
               </li>
               <li>
-                <Link href="/realisations">Galerie & réalisations</Link>
+                <Link href="/realisations">Galerie &amp; réalisations</Link>
               </li>
               <li>
-                <Link href="/a-propos">À propos de l'entreprise</Link>
+                <Link href="/a-propos">À propos de l&apos;entreprise</Link>
               </li>
               <li>
                 <Link href="/contact">Demande de devis</Link>
@@ -68,22 +68,22 @@ export default function Footer() {
             <div className="gold-dash"></div>
             <ul className="footer-links-list">
               <li>
-                <Link href="/services#verrieres-toitures-vitrees">Verrières & toitures vitrées</Link>
+                <Link href="/services/verrieres-toitures-vitrees">Verrières &amp; toitures vitrées</Link>
               </li>
               <li>
-                <Link href="/services#verandas-baies-vitrees">Vérandas & baies coulissantes</Link>
+                <Link href="/services/verandas-baies-vitrees">Vérandas &amp; baies coulissantes</Link>
               </li>
               <li>
-                <Link href="/services#vitres-fenetres-particuliers">Fenêtres particuliers</Link>
+                <Link href="/services/vitres-fenetres-particuliers">Fenêtres particuliers</Link>
               </li>
               <li>
-                <Link href="/services#vitrines-commerciales">Vitrines de magasins</Link>
+                <Link href="/services/vitrines-commerciales">Vitrines de magasins</Link>
               </li>
               <li>
-                <Link href="/services#locaux-professionnels">Surfaces vitrées de bureaux</Link>
+                <Link href="/services/locaux-professionnels">Surfaces vitrées de bureaux</Link>
               </li>
               <li>
-                <Link href="/services#acces-hauteur-adapte">Nettoyage en hauteur</Link>
+                <Link href="/services/acces-hauteur-adapte">Nettoyage en hauteur &amp; nacelle</Link>
               </li>
             </ul>
           </div>

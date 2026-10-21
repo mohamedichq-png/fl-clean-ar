@@ -1,15 +1,18 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, Shield, Calendar, Sparkles, AlertCircle } from "lucide-react";
+import { ArrowRight, CheckCircle2, Shield, Calendar, ChevronRight } from "lucide-react";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { servicesData } from "@/config/services";
 import { businessConfig } from "@/config/business";
 
 export const metadata = {
-  title: "Nos Services de Nettoyage de Vitres & Verrières",
+  title: "Nos Services de Nettoyage de Vitres & Verrières (66) | FL Clean AR",
   description:
-    "Découvrez l'ensemble de nos prestations de nettoyage de surfaces vitrées dans les Pyrénées-Orientales : verrières, toitures vitrées, vitrines de magasins, vérandas et fenêtres.",
+    "Découvrez l'ensemble de nos prestations de nettoyage de surfaces vitrées dans les Pyrénées-Orientales : verrières, toitures vitrées, vitrines de magasins, vérandas, fenêtres et façades en hauteur.",
+  alternates: {
+    canonical: "/services",
+  },
 };
 
 export default function ServicesPage() {
@@ -21,7 +24,7 @@ export default function ServicesPage() {
       <section className="section section-light page-hero" aria-labelledby="services-hero-heading">
         <div className="container">
           <div className="section-header">
-            <span className="section-subtitle">Excellence & Précision</span>
+            <span className="section-subtitle">Excellence &amp; Précision</span>
             <h1 id="services-hero-heading">Nos Services de Nettoyage de Surfaces Vitrées</h1>
             <div className="gold-line"></div>
             <p className="section-lead">
@@ -29,8 +32,6 @@ export default function ServicesPage() {
             </p>
           </div>
         </div>
-
-        
       </section>
 
       {/* Services Detailed List */}
@@ -63,12 +64,16 @@ export default function ServicesPage() {
 
                   <div className="service-content-column">
                     <span className="service-index">0{index + 1}</span>
-                    <h2 className="service-detail-title">{svc.title}</h2>
+                    <h2 className="service-detail-title">
+                      <Link href={`/services/${svc.slug}`} className="service-title-anchor">
+                        {svc.title}
+                      </Link>
+                    </h2>
                     <div className="gold-dash"></div>
                     <p className="service-full-text">{svc.fullDescription}</p>
 
                     <div className="service-features-box">
-                      <h4 className="features-subheading">Points clés de notre intervention :</h4>
+                      <h3 className="features-subheading">Points clés de notre intervention :</h3>
                       <ul className="features-list">
                         {svc.features.map((feat, fIdx) => (
                           <li key={fIdx} className="feature-li">
@@ -82,16 +87,24 @@ export default function ServicesPage() {
                     <div className="frequency-box">
                       <Calendar size={15} className="frequency-icon" />
                       <span className="frequency-text">
-                        <strong>Fréquences d'intervention :</strong> {svc.frequencyOptions.join(" • ")}
+                        <strong>Fréquences d&apos;intervention :</strong> {svc.frequencyOptions.join(" • ")}
                       </span>
                     </div>
 
                     <div className="service-action-row">
                       <Link
+                        href={`/services/${svc.slug}`}
+                        className="btn btn-outline"
+                      >
+                        <span>Fiche détaillée &amp; FAQ</span>
+                        <ChevronRight size={16} />
+                      </Link>
+
+                      <Link
                         href={`/contact?service=${encodeURIComponent(svc.title)}`}
                         className="btn btn-primary"
                       >
-                        <span>Demander un devis pour ce service</span>
+                        <span>Demander un devis</span>
                         <ArrowRight size={16} />
                       </Link>
                     </div>
@@ -105,22 +118,20 @@ export default function ServicesPage() {
           <div className="scope-clarification-card">
             <div className="clarification-header">
               <Shield size={20} className="clarification-icon" />
-              <h3 className="clarification-title">Périmètre technique & éthique professionnelle</h3>
+              <h3 className="clarification-title">Périmètre technique &amp; éthique professionnelle</h3>
             </div>
             <p className="clarification-desc">
-              Chez FL Clean AR, nous nous concentrons exclusivement sur notre cœur de métier : le <strong>nettoyage de surfaces vitrées, verrières, vérandas et vitrines</strong>. Nous n'affichons pas de prestations non vérifiées (décapage haute pression agressif, traitement de toitures non vitrées ou désinfection industrielle lourde) afin de vous garantir un niveau de qualité et d'expertise irréprochable sur chaque chantier.
+              Chez FL Clean AR, nous nous concentrons exclusivement sur notre cœur de métier : le <strong>nettoyage de surfaces vitrées, verrières, vérandas, façades et vitrines</strong>. Nous n&apos;affichons pas de prestations non vérifiées (décapage haute pression agressif, traitement de toitures non vitrées ou désinfection industrielle lourde) afin de vous garantir un niveau de qualité et d&apos;expertise irréprochable sur chaque chantier.
             </p>
           </div>
         </div>
-
-        
       </section>
 
       {/* Call to action */}
       <section className="section section-primary" aria-label="Demande de devis">
         <div className="container text-center" style={{ textAlign: "center", maxWidth: "700px" }}>
           <span className="section-subtitle" style={{ color: "var(--color-gold-light)" }}>
-            Sur-Mesure & Gratuit
+            Sur-Mesure &amp; Sans Engagement
           </span>
           <h2 style={{ color: "#ffffff", marginBottom: "1rem" }}>
             Un projet pour vos vitrages ou votre verrière ?

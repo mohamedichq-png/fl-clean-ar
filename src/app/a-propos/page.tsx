@@ -10,6 +10,9 @@ export const metadata = {
   title: "À Propos de FL Clean AR | Artisan Laveur de Vitres (66)",
   description:
     "Découvrez FL Clean AR et son fondateur Farid Hammoudi : artisan laveur de vitres intervenant à Thuir et dans toutes les Pyrénées-Orientales, toutes hauteurs en nacelle et perche eau pure.",
+  alternates: {
+    canonical: "/a-propos",
+  },
 };
 
 export default function AboutPage() {
@@ -204,7 +207,7 @@ export default function AboutPage() {
           </p>
           <div style={{ display: "flex", justifyContent: "center", gap: "1rem", flexWrap: "wrap" }}>
             <Link href="/contact" className="btn btn-gold btn-lg">
-              <span>Demander un devis gratuit</span>
+              <span>Demander un devis</span>
               <ArrowRight size={18} />
             </Link>
             <a href={businessConfig.phone.href} className="btn btn-primary btn-lg">

@@ -182,7 +182,7 @@ export default function Header() {
               href="/contact"
               className="btn btn-gold btn-block"
             >
-              <span>Demander un devis gratuit</span>
+              <span>Demander un devis</span>
               <ArrowRight size={16} />
             </Link>
 

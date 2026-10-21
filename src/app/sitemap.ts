@@ -1,10 +1,18 @@
 import { MetadataRoute } from "next";
+import { servicesData } from "@/config/services";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://flclean-ar.fr";
   const lastModified = new Date();
 
-  return [
+  const serviceEntries: MetadataRoute.Sitemap = servicesData.map((svc) => ({
+    url: `${baseUrl}/services/${svc.slug}`,
+    lastModified,
+    changeFrequency: "weekly",
+    priority: 0.85,
+  }));
+
+  const staticEntries: MetadataRoute.Sitemap = [
     {
       url: `${baseUrl}/`,
       lastModified,
@@ -48,4 +56,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.3,
     },
   ];
+
+  return [...staticEntries, ...serviceEntries];
 }

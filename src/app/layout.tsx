@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -6,22 +7,41 @@ import MobileContactBar from "@/components/MobileContactBar";
 import VerificationNotice from "@/components/VerificationNotice";
 import { businessConfig } from "@/config/business";
 
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+  weight: ["400", "500", "600", "700"],
+});
+
+const outfit = Outfit({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-outfit",
+  weight: ["500", "600", "700", "800"],
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://flclean-ar.fr"),
+  alternates: {
+    canonical: "/",
+  },
   title: {
     default: "FL Clean AR | Nettoyage de Vitres Professionnel & Particulier (66)",
     template: "%s | FL Clean AR",
   },
   description:
-    "Entreprise de nettoyage professionnel de vitres, verrières, vérandas, vitrines et surfaces vitrées pour particuliers et professionnels dans les Pyrénées-Orientales (Thuir, Perpignan). Devis gratuit.",
+    "Entreprise de nettoyage professionnel de vitres, verrières, vérandas, vitrines et façades pour particuliers et locaux professionnels dans les Pyrénées-Orientales (Thuir, Perpignan). Devis sur mesure.",
   keywords: [
     "nettoyage de vitres professionnel",
-    "nettoyage vitres thur",
+    "nettoyage vitres thuir",
     "nettoyage vitres perpignan",
     "nettoyage verrière pyrénées orientales",
     "nettoyage vitrines magasins 66",
     "nettoyage véranda 66",
     "laveur de vitre 66",
+    "nettoyage façades vitrées",
+    "nacelle laveur de vitre 66",
     "FL Clean AR",
     "FL Vitre 66"
   ],
@@ -38,8 +58,8 @@ export const metadata: Metadata = {
     apple: "/assets/images/logo-emblem.png",
   },
   openGraph: {
-    title: "FL Clean AR | Nettoyage de Vitres Professionnel & Particulier",
-    description: "Le nettoyage de vitres professionnel, en toute transparence. Verrières, vitrines et fenêtres dans les Pyrénées-Orientales (66).",
+    title: "FL Clean AR | Nettoyage de Vitres Professionnel & Particulier (66)",
+    description: "Le nettoyage de vitres professionnel, en toute transparence. Verrières, vérandas, vitrines et façades dans les Pyrénées-Orientales.",
     url: "https://flclean-ar.fr",
     siteName: "FL Clean AR",
     locale: "fr_FR",
@@ -109,20 +129,17 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="fr">
+    <html lang="fr" className={`${inter.variable} ${outfit.variable}`}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap"
-          rel="stylesheet"
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
         />
       </head>
       <body>
+        <a href="#main-content" className="skip-link">
+          Aller au contenu principal
+        </a>
         <VerificationNotice />
         <Header />
         <main id="main-content">{children}</main>

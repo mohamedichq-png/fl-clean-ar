@@ -6,9 +6,12 @@ import QuoteForm from "@/components/QuoteForm";
 import { businessConfig } from "@/config/business";
 
 export const metadata = {
-  title: "Contact & Devis Gratuit | FL Clean AR (66)",
+  title: "Contact & Devis Personnalisé | FL Clean AR (66)",
   description:
-    "Demandez votre devis gratuit de nettoyage de vitres, verrières et vitrines dans les Pyrénées-Orientales. Réponse sous 24h à 48h. Contact par formulaire, téléphone ou WhatsApp.",
+    "Demandez votre devis personnalisé de nettoyage de vitres, verrières, vérandas et vitrines dans les Pyrénées-Orientales. Réponse rapide. Contact par formulaire, téléphone ou WhatsApp.",
+  alternates: {
+    canonical: "/contact",
+  },
 };
 
 export default function ContactPage() {
@@ -20,7 +23,7 @@ export default function ContactPage() {
       <section className="section section-light page-hero" aria-labelledby="contact-heading">
         <div className="container">
           <div className="section-header">
-            <span className="section-subtitle">Devis Gratuit & Sans Engagement</span>
+            <span className="section-subtitle">Devis Personnalisé &amp; Sans Engagement</span>
             <h1 id="contact-heading">Contactez FL Clean AR</h1>
             <div className="gold-line"></div>
             <p className="section-lead">

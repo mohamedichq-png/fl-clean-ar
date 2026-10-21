@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Sparkles, ShieldCheck, CheckCircle2, Phone } from "lucide-react";
+import { ArrowRight, Sparkles, CheckCircle2, Phone, MessageCircle } from "lucide-react";
 import { businessConfig } from "@/config/business";
 import { assetInventory } from "@/config/assets";
 
@@ -26,18 +26,18 @@ export default function Hero() {
           {/* Eyebrow badge */}
           <div className="hero-badge">
             <Sparkles size={14} className="badge-sparkle" />
-            <span>Spécialiste surfaces vitrées & toitures de verrières • 66</span>
+            <span>Artisan Laveur de Vitres • Pyrénées-Orientales (66)</span>
           </div>
 
           {/* Main Headline */}
           <h1 id="hero-heading" className="hero-title">
-            Le nettoyage de vitres professionnel,{" "}
-            <span className="hero-highlight">en toute transparence.</span>
+            Nettoyage professionnel de{" "}
+            <span className="hero-highlight">vitres, verrières &amp; façades</span>
           </h1>
 
           {/* Supporting Text */}
           <p className="hero-lead">
-            Des vitres impeccables et des façades soignées pour vos espaces professionnels et résidentiels. Chaque intervention est étudiée sur mesure pour respecter vos matériaux et sublimer la luminosité naturelle.
+            Des solutions de nettoyage adaptées à vos locaux professionnels, vitrages et façades dans les Pyrénées-Orientales (Thuir, Perpignan et communes environnantes). Contactez-nous pour étudier votre besoin et obtenir un devis.
           </p>
 
           {/* Artisan badge in Hero */}
@@ -60,24 +60,49 @@ export default function Hero() {
           {/* CTA Buttons */}
           <div className="hero-actions">
             <Link href="/contact" className="btn btn-gold btn-lg hero-btn-primary">
-              <span>Demander un devis gratuit</span>
+              <span>Demander un devis</span>
               <ArrowRight size={18} />
             </Link>
 
-            <Link href="/realisations" className="btn btn-outline-white btn-lg">
-              <span>Découvrir nos 11 réalisations</span>
+            <Link href="/contact" className="btn btn-outline-white btn-lg">
+              <span>Nous contacter</span>
             </Link>
+          </div>
+
+          {/* Direct Phone & WhatsApp actions */}
+          <div className="hero-direct-actions">
+            <a
+              href={businessConfig.phone.href}
+              className="hero-direct-pill"
+              aria-label={`Appeler le ${businessConfig.phone.display}`}
+            >
+              <Phone size={15} />
+              <span>Appeler au {businessConfig.phone.display}</span>
+            </a>
+
+            {businessConfig.whatsapp.enabled && (
+              <a
+                href={businessConfig.whatsapp.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hero-direct-pill hero-whatsapp-pill"
+                aria-label="Échanger directement par WhatsApp"
+              >
+                <MessageCircle size={15} />
+                <span>Échanger par WhatsApp</span>
+              </a>
+            )}
           </div>
 
           {/* Reassurance Grid */}
           <div className="hero-reassurance-grid">
             <div className="reassurance-item">
               <CheckCircle2 size={18} className="reassurance-icon" />
-              <span>Matériel pro & nacelle certifiée</span>
+              <span>Matériel pro &amp; nacelle certifiée</span>
             </div>
             <div className="reassurance-item">
               <CheckCircle2 size={18} className="reassurance-icon" />
-              <span>Particuliers & Entreprises (66)</span>
+              <span>Particuliers &amp; Locaux professionnels (66)</span>
             </div>
             <div className="reassurance-item">
               <CheckCircle2 size={18} className="reassurance-icon" />

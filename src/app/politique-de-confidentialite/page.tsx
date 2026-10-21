@@ -7,6 +7,9 @@ import { businessConfig } from "@/config/business";
 export const metadata = {
   title: "Politique de Confidentialité & RGPD | FL Clean AR",
   description: "Politique de protection des données personnelles de FL Clean AR conformément au RGPD.",
+  alternates: {
+    canonical: "/politique-de-confidentialite",
+  },
 };
 
 export default function PolitiqueConfidentialitePage() {
